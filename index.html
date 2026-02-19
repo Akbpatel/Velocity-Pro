@@ -71,6 +71,25 @@
         .animate-reverse-spin {
             animation: spin-slow 20s linear infinite reverse;
         }
+
+        /* Scrolling Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 20s linear infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -87,7 +106,7 @@
             <a href="#categories" class="hover:neon-lime transition">Men</a>
             <a href="#categories" class="hover:neon-lime transition">Women</a>
             <a href="#trending" class="hover:neon-lime transition">Equipment</a>
-            <a href="#" class="text-red-500 hover:text-red-400 transition animate-pulse">Hot Deals</a>
+            <a href="#feedback" class="hover:neon-lime transition">Wall of Fame</a>
         </div>
 
         <div class="flex items-center space-x-8">
@@ -110,7 +129,7 @@
         <a href="#" onclick="toggleMenu()">New Releases</a>
         <a href="#categories" onclick="toggleMenu()">Men</a>
         <a href="#categories" onclick="toggleMenu()">Women</a>
-        <a href="#trending" onclick="toggleMenu()">Deals</a>
+        <a href="#feedback" onclick="toggleMenu()">Wall of Fame</a>
     </div>
 
     <!-- Enhanced Hero Section -->
@@ -158,8 +177,51 @@
         </div>
     </section>
 
+    <!-- Scrolling Marquee -->
+    <div class="bg-neon-lime py-4 overflow-hidden whitespace-nowrap border-y-2 border-black rotate-[-1deg] relative z-20">
+        <div class="flex animate-marquee text-black font-black uppercase italic text-2xl tracking-tighter">
+            <span class="mx-8">Limitless Performance</span>
+            <span class="mx-8">•</span>
+            <span class="mx-8">Engineered for Speed</span>
+            <span class="mx-8">•</span>
+            <span class="mx-8">Velocity Pro Elite</span>
+            <span class="mx-8">•</span>
+            <span class="mx-8">Break Your Records</span>
+            <span class="mx-8">•</span>
+            <span class="mx-8">Limitless Performance</span>
+            <span class="mx-8">•</span>
+            <span class="mx-8">Engineered for Speed</span>
+            <span class="mx-8">•</span>
+            <span class="mx-8">Velocity Pro Elite</span>
+            <span class="mx-8">•</span>
+            <span class="mx-8">Break Your Records</span>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-[#050505] relative reveal">
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <h3 class="text-5xl md:text-6xl font-black italic neon-lime mb-2">10M+</h3>
+                <p class="text-xs uppercase tracking-widest font-bold text-slate-500">Global Units Sold</p>
+            </div>
+            <div>
+                <h3 class="text-5xl md:text-6xl font-black italic neon-lime mb-2">500+</h3>
+                <p class="text-xs uppercase tracking-widest font-bold text-slate-500">Pro Athletes</p>
+            </div>
+            <div>
+                <h3 class="text-5xl md:text-6xl font-black italic neon-lime mb-2">98%</h3>
+                <p class="text-xs uppercase tracking-widest font-bold text-slate-500">Success Rating</p>
+            </div>
+            <div>
+                <h3 class="text-5xl md:text-6xl font-black italic neon-lime mb-2">24h</h3>
+                <p class="text-xs uppercase tracking-widest font-bold text-slate-500">Elite Support</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Social Proof -->
-    <div class="bg-[#0a0a0a] py-16 border-y border-white/5">
+    <div class="bg-[#0a0a0a] py-16 border-y border-white/5 reveal">
         <div class="container mx-auto px-6 overflow-hidden">
             <p class="text-center text-slate-600 uppercase font-black text-[9px] tracking-[0.5em] mb-12">Authorized Performance Partner of</p>
             <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-20 grayscale">
@@ -173,7 +235,7 @@
     </div>
 
     <!-- Featured Categories Grid -->
-    <section id="categories" class="py-24 px-6 container mx-auto">
+    <section id="categories" class="py-24 px-6 container mx-auto reveal">
         <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div>
                 <h2 class="text-5xl md:text-7xl font-black uppercase italic leading-none">Gear Up for <br><span class="neon-lime">The Win</span></h2>
@@ -205,7 +267,7 @@
     </section>
 
     <!-- Interactive Trending Slider -->
-    <section id="trending" class="py-24 bg-[#0a0a0a] overflow-hidden">
+    <section id="trending" class="py-24 bg-[#0a0a0a] overflow-hidden reveal">
         <div class="container mx-auto px-6 mb-12 flex justify-between items-center">
             <h2 class="text-4xl font-black uppercase italic tracking-tighter">Trending <span class="neon-lime">Now</span></h2>
             <div class="flex space-x-3">
@@ -260,8 +322,81 @@
         </div>
     </section>
 
+    <!-- Wall of Fame -->
+    <section id="feedback" class="py-32 bg-[#050505] reveal">
+        <div class="container mx-auto px-6 text-center mb-16">
+            <h2 class="text-5xl md:text-7xl font-black uppercase italic tracking-tighter">Wall of <span class="neon-lime">Fame</span></h2>
+            <p class="text-slate-500 mt-4 uppercase tracking-[0.2em] text-xs">Stories from the elite circle</p>
+        </div>
+
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-[#0f0f0f] p-10 border-t-4 border-neon-lime relative group">
+                <i data-lucide="quote" class="absolute top-6 right-6 w-8 h-8 text-white/5 group-hover:text-neon-lime transition"></i>
+                <div class="flex text-neon-lime mb-6">
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                </div>
+                <p class="text-lg font-bold italic mb-8 leading-relaxed">"The compression gear is a game changer. I've reduced my recovery time by nearly 40% using the Titan series."</p>
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=100&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-left">
+                        <p class="font-black uppercase italic text-sm">Marcus Vane</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest">Pro Marathoner</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#0f0f0f] p-10 border-t-4 border-neon-lime relative group">
+                <i data-lucide="quote" class="absolute top-6 right-6 w-8 h-8 text-white/5 group-hover:text-neon-lime transition"></i>
+                <div class="flex text-neon-lime mb-6">
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                </div>
+                <p class="text-lg font-bold italic mb-8 leading-relaxed">"Velocity Pro doesn't just sell gear; they sell confidence. The grip on the Sonic Strike V4 is unparalleled."</p>
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1548690312-e3b507d17a47?q=80&w=100&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-left">
+                        <p class="font-black uppercase italic text-sm">Sarah Chen</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest">Crossfit Coach</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#0f0f0f] p-10 border-t-4 border-neon-lime relative group">
+                <i data-lucide="quote" class="absolute top-6 right-6 w-8 h-8 text-white/5 group-hover:text-neon-lime transition"></i>
+                <div class="flex text-neon-lime mb-6">
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                </div>
+                <p class="text-lg font-bold italic mb-8 leading-relaxed">"Best investment for my training. The tech-fit actually adjusts to my movement. Pure engineering excellence."</p>
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=100&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-left">
+                        <p class="font-black uppercase italic text-sm">David Miller</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest">Olympic Sprinter</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Brand Statement -->
-    <section class="relative py-32 flex items-center justify-center text-center px-6 overflow-hidden">
+    <section class="relative py-32 flex items-center justify-center text-center px-6 overflow-hidden reveal">
         <div class="absolute inset-0 bg-neon-lime"></div>
         <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, #000, #000 20px, transparent 20px, transparent 40px);"></div>
         <div class="relative z-10 text-black">
@@ -302,10 +437,16 @@
             </div>
             <div>
                 <h5 class="text-white font-black uppercase tracking-widest text-xs mb-8 border-l-4 border-neon-lime pl-4">Contact</h5>
-                <p class="text-slate-500 text-xs mb-6 uppercase tracking-wider">Stay in the loop</p>
+                <div class="mb-8 group">
+                    <a href="mailto:karanadjudiya78629@gmail.com" class="text-slate-500 text-xs font-black uppercase tracking-widest hover:text-neon-lime transition flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        karanadjudiya78629@gmail.com
+                    </a>
+                </div>
+                <p class="text-slate-500 text-[10px] mb-4 uppercase tracking-widest">Stay in the loop</p>
                 <div class="flex border-b border-white/20 focus-within:border-neon-lime transition-colors">
-                    <input type="email" placeholder="EMAIL@DOMAIN.COM" class="bg-transparent border-none py-3 text-xs font-black tracking-widest flex-grow focus:ring-0">
-                    <button class="text-neon-lime font-black px-4"><i data-lucide="arrow-right"></i></button>
+                    <input type="email" placeholder="JOIN THE LIST" class="bg-transparent border-none py-3 text-xs font-black tracking-widest flex-grow focus:ring-0 placeholder:text-slate-800">
+                    <button class="text-neon-lime font-black px-4"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
                 </div>
             </div>
         </div>
@@ -314,11 +455,23 @@
 
     <script>
         lucide.createIcons();
+        
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             nav.classList.toggle('py-4', window.scrollY > 100);
             nav.classList.toggle('py-6', window.scrollY <= 100);
+
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveal.getBoundingClientRect().top;
+                const revealPoint = 150;
+                if (revealTop < windowHeight - revealPoint) {
+                    reveal.classList.add('active');
+                }
+            });
         });
+
         function scrollGrid(direction) {
             const grid = document.getElementById('product-grid');
             grid.scrollBy({ left: direction * grid.clientWidth * 0.8, behavior: 'smooth' });
@@ -328,6 +481,8 @@
             menu.classList.toggle('hidden');
             menu.classList.toggle('flex');
         }
+
+        window.dispatchEvent(new Event('scroll'));
     </script>
 </body>
 </html>
